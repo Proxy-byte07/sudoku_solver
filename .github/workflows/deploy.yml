@@ -1,4 +1,4 @@
-name: Deploy Sudoku Solver to GitHub Pages
+name: Deploy Sudoku Solver
 
 on:
   push:
@@ -10,10 +10,6 @@ permissions:
   contents: read
   pages: write
   id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -39,14 +35,14 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Setup GitHub Pages
+      - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload build
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
           path: ./dist
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
