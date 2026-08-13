@@ -11,6 +11,10 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
 jobs:
   deploy:
     environment:
@@ -35,6 +39,13 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Verify build
+        run: |
+          echo "=== DIST ==="
+          find dist -maxdepth 2 -type f
+          echo "=== INDEX ==="
+          cat dist/index.html
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
@@ -46,10 +57,3 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
-
-        - name: Verify build
-  run: |
-    echo "=== DIST ==="
-    find dist -maxdepth 2 -type f
-    echo "=== INDEX ==="
-    cat dist/index.html
