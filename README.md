@@ -31,3 +31,5 @@ Installation and Usage
 To run the project locally, clone the repository and navigate to the project directory. Install the required dependencies using npm install and start the development server using npm run dev. The application can then be accessed through the local URL provided by Vite, typically http://localhost:5173.
 
 For production verification, the project can be checked using npm run lint and built using npm run build. The production build can also be previewed using npm run preview.
+
+visit the website for live demo: https://proxy-byte07.github.io/sudoku_solver/
